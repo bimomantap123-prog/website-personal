@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kirim Pesan untuk seseorang</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffe6f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #d6336c;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 2px solid #d6336c;
+            resize: none;
+        }
+        button {
+            margin-top: 10px;
+            background-color: #d6336c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #a0274a;
+        }
+        #messages {
+            margin-top: 30px;
+            width: 320px;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(214, 51, 108, 0.3);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .message {
+            background: #ffd6e8;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            color: #6a0036;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kirim Pesan untuk seseorang</h1>
+    <textarea id="messageInput" placeholder="Tulis pesanmu di sini..."></textarea>
+    <button onclick="sendMessage()">Kirim Pesan</button>
+
+    <div id="messages"></div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (message === '') {
+                alert('Tolong tulis pesan terlebih dahulu!');
+                return;
+            }
+
+            const messagesDiv = document.getElementById('messages');
+            const newMessage = document.createElement('div');
+            newMessage.classList.add('message');
+            newMessage.textContent = message;
+
+            messagesDiv.appendChild(newMessage);
+            input.value = '';
+            input.focus();
+
+            // Scroll ke bawah agar pesan terbaru terlihat
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
